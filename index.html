@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lostings – Smart Lost & Found</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-search"></i> Lostings</h1>
+        <div>
+            <nav>
+                <ul id="navLinks">
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div id="homePage">
+            <h2><i class="fas fa-home"></i> Welcome to Lostings – Smart Lost & Found</h2>
+            <p>Lostings is a unique online platform that reunites people with their lost belongings through a powerful matching system. Whether you've lost an item or found one, our tools make recovery fast, easy, and effective.</p>
+
+            <div class="card">
+                <h3><i class="fas fa-tasks"></i> Step-By-Step Process</h3>
+                <ol>
+                    <li><strong>Report an Item:</strong> Enter details like item name, category, photo, date, time, and location where it was lost or found.</li>
+                    <li><strong>Submit Report:</strong> Review your entry and submit it securely to our system.</li>
+                    <li><strong>Create Account:</strong> Receive an email with your dashboard login and account information.</li>
+                    <li><strong>Print Fliers:</strong> Use your dashboard to generate and print custom fliers for local distribution.</li>
+                    <li><strong>Get Matched:</strong> Receive real-time email notifications and system alerts when new items match your report.</li>
+                </ol>
+            </div>
+
+            <h3><i class="fas fa-bell"></i> Get Notified on Matches</h3>
+            <p>Our smart matching system automatically compares lost and found reports. You’ll receive up-to-date email notifications and system alerts whenever a newly submitted item matches or closely resembles your lost or found entry.</p>
+
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search items..." />
+                <select id="filterStatus">
+                    <option value="">All Status</option>
+                    <option value="lost">Lost</option>
+                    <option value="found">Found</option>
+                </select>
+                <button class="btn" onclick="filterItems()"><i class="fas fa-search"></i> Search</button>
+            </div>
+            <div id="itemList"></div>
+        </div>
+
+    
+        <div id="loginPage" class="hidden">
+            <div class="form-container">
+                <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <p class="mt-1">Don't have an account? <a href="#" id="showRegister">Register here</a></p>
+                </form>
+            </div>
+        </div>
+
+    
+        <div id="registerPage" class="hidden">
+            <div class="form-container">
+                <h2><i class="fas fa-user-plus"></i> Register</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-user-plus"></i> Register</button>
+                    <p class="mt-1">Already have an account? <a href="#" id="showLogin">Login here</a></p>
+                </form>
+            </div>
+        </div>
+
+
+        <div id="reportPage" class="hidden">
+            <div class="form-container">
+                <h2><i class="fas fa-flag"></i> Report an Item</h2>
+                <form id="itemForm">
+                    <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" id="itemName" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="itemDescription">Description</label>
+                        <textarea id="itemDescription" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <div>
+                            <input type="radio" id="statusLost" name="status" value="lost" checked />
+                            <label for="statusLost">Lost</label>
+                            <input type="radio" id="statusFound" name="status" value="found" />
+                            <label for="statusFound">Found</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" class="form-control">
+                            <option value="electronics">Electronics</option>
+                            <option value="wallet">Wallet/Purse</option>
+                            <option value="jewelry">Jewelry</option>
+                            <option value="keys">Keys</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="documents">Documents</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemImage">Add Photo (Optional)</label>
+                        <input type="file" id="itemImage" accept="image/*" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location (Optional)</label>
+                        <input type="text" id="location" class="form-control" placeholder="e.g., Cafeteria, Building A" />
+                    </div>
+                    <button type="submit" class="btn">Submit Report</button>
+                </form>
+            </div>
+        </div>
+
+    
+        <div id="myItemsPage" class="hidden">
+            <h2><i class="fas fa-list"></i> My Reported Items</h2>
+            <div id="myItemList"></div>
+        </div>
+
+    
+        <div id="adminPage" class="hidden">
+            <h2><i class="fas fa-cogs"></i> Admin Dashboard</h2>
+            <h3 class="mt-2">Users</h3>
+            <div class="card">
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <h3 class="mt-2">All Items</h3>
+            <div id="adminItemList"></div>
+            <button class="btn mt-2" onclick="exportData()"><i class="fas fa-file-export"></i> Export Data</button>
+        </div>
+    </div>
+
+
+    <div id="toast" class="toast"></div>
+
+    <footer>
+        <p>&copy; 2025 <strong>Lostings</strong> – Reuniting people with their lost belongings.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
