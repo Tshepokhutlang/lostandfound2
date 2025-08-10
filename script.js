@@ -1,4 +1,4 @@
-
+// === SECTION: STATE DEFINITION ===
 const state = {
     currentUser: null,
     items: [
@@ -15,10 +15,10 @@ const state = {
         { id: 3, firstName: 'Admin', lastName: 'User', email: 'admin@example.com', role: 'admin', password: 'admin123' }
     ]
 };
-
+// === SECTION: DOM ELEMENT REFERENCES ===
 const navLinksEl = document.getElementById('navLinks');
 const toastEl = document.getElementById('toast');
-
+// === SECTION: PAGE MAPPING ===
 const pages = {
     home: document.getElementById('homePage'),
     login: document.getElementById('loginPage'),
@@ -32,7 +32,7 @@ function showPage(page) {
     Object.values(pages).forEach(p => p.classList.add('hidden'));
     pages[page].classList.remove('hidden');
 }
-
+// === SECTION: NAVIGATION & UI FUNCTIONS ===
 function showToast(message, isError = false) {
     toastEl.textContent = message;
     toastEl.style.backgroundColor = isError ? '#e74c3c' : '#2c3e50';
@@ -70,7 +70,7 @@ function updateNavigation() {
         navLinksEl.appendChild(li);
     });
 }
-
+// === SECTION: AUTHENTICATION FUNCTIONS ===
 function login(email, password) {
     const user = state.users.find(u =>
         u.email === email &&
@@ -115,7 +115,7 @@ function logout() {
     loadItems();
 }
 
-
+// === SECTION: ITEM DISPLAY & FILTERING ===
 function loadItems() {
     const itemListEl = document.getElementById('itemList');
     const filtered = filterItems(true);
@@ -142,7 +142,7 @@ function filterItems(returnOnly = false) {
     if (returnOnly) return filtered;
     loadItems();
 }
-
+// === SECTION: MY ITEMS MANAGEMENT ===
 function loadMyItems() {
     const userFullName = `${state.currentUser.firstName} ${state.currentUser.lastName}`;
     const myItems = state.items.filter(item => item.owner === userFullName);
@@ -200,7 +200,7 @@ window.printFlier = function(id) {
     `);
     printWindow.document.close();
 };
-
+// === SECTION: REPORTING & ITEM ACTIONS ===
 function reportItem(name, description, status) {
     const fileInput = document.getElementById('itemImage');
     let image = null;
@@ -236,7 +236,7 @@ function checkForMatches(newItem) {
     }
 }
 
-
+// === SECTION: DATA EXPORT & ADMIN UTILS ===
 function exportData() {
     const csv = [
         ['Name', 'Description', 'Status', 'Owner', 'Date', 'Location', 'Category'].join(','),
@@ -298,7 +298,7 @@ function init() {
     document.getElementById('searchInput')?.addEventListener('input', filterItems);
     document.getElementById('filterStatus')?.addEventListener('change', filterItems);
 }
-
+// === SECTION: EDIT, DELETE & ADMIN FUNCTIONS ===
 window.editItem = function(id) {
     const item = state.items.find(i => i.id === id);
     if (!item) return;
@@ -376,5 +376,6 @@ window.loadAdminData = function() {
         </div>
     `).join('');
 };
+
 
 init();
