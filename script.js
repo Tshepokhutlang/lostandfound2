@@ -3,9 +3,27 @@ const state = {
     currentUser: null,
     items: [
         {
+             id: 101,
+            name: 'Lost Wallet',
+            description: 'Black leather wallet with ID and credit cards.',
+            status: 'lost',
+            owner: 'John Doe',
+            date: '2024-04-05',
+            location: 'Main Building, Room 205',
+            category: 'accessories',
+            image: null
            
         },
         {
+              id: 102,
+            name: 'Found Smartphone',
+            description: 'iPhone 14 found near cafeteria.',
+            status: 'found',
+            owner: 'Jane Smith',
+            date: '2024-04-06',
+            location:  'Main Building, Room 60',
+            category: 'electronics',
+            image: 'https://example.com/images/iphone.jpg'
            
         }
     ],
@@ -379,3 +397,4 @@ window.loadAdminData = function() {
 
 
 init();
+
